@@ -77,7 +77,7 @@ export default function Projects() {
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 1 }}
   >
-    Skills & Expertise
+    My Projects
     <span className="absolute left-1/2 -translate-x-1/2 bottom-[-10px] w-20 sm:w-24 h-1 bg-blue-500 rounded-full"></span>
   </motion.h2>
 

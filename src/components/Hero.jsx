@@ -4,7 +4,6 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 
 export default function Hero() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const name = "Saif Ansari".split(" ");
 
   return (
@@ -31,7 +30,7 @@ export default function Hero() {
                   className="inline-block"
                 >
                   {word}
-                  {index !== name.length - 1 && "\u00A0"} {/* non-breaking space between words */}
+                  {index !== name.length - 1 && "\u00A0"}
                 </motion.span>
               ))}
             </span>
@@ -44,7 +43,6 @@ export default function Hero() {
               👋
             </motion.span>
           </h1>
-
 
           <motion.p
             className="text-lg text-gray-300 mb-6"
@@ -79,6 +77,7 @@ export default function Hero() {
             ))}
           </div>
 
+          {/* Resume Button */}
           <motion.button
             onClick={() => setIsModalOpen(true)}
             className="inline-block px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:to-yellow-500 transition-all duration-300 shadow-lg hover:shadow-2xl"
@@ -99,41 +98,51 @@ export default function Hero() {
         >
           <div className="absolute inset-0 rounded-full border-4 border-transparent animate-glow"></div>
           <img
-            src="/images/saif 1.jpg"
+            src={`${import.meta.env.BASE_URL}images/saif 1.jpg`}
             alt="Saif Ansari"
             className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-full object-cover border-4 border-pink-500 shadow-lg hover:scale-105 transition-transform duration-300 relative z-10"
           />
         </motion.div>
       </div>
 
-      {/* Resume Popup Modal */}
+      {/* Resume Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
           <motion.div
-            className="bg-white dark:bg-gray-900 rounded-lg p-6 w-[90%] md:w-[60%] shadow-2xl"
+            className="backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl p-6 w-[90%] md:w-[60%] shadow-2xl"
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            <h2 className="text-2xl font-bold mb-4 text-white text-center">
               My Resume
             </h2>
+
             <iframe
-              src="/images/M.saif-cv.pdf"
+              src={`${import.meta.env.BASE_URL}images/M.saif-cv.pdf`}
               title="Resume Preview"
-              className="w-full h-[400px] border rounded"
+              className="w-full h-[400px] border rounded-lg bg-white"
             ></iframe>
-            <div className="mt-4 flex justify-end gap-4">
+
+            <div className="mt-5 flex flex-wrap justify-center gap-4">
               <a
-                href="/images/M.saif-cv.pdf"
-                download
-                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition"
+                href={`${import.meta.env.BASE_URL}images/M.saif-cv.pdf`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-full shadow-md transition"
+              >
+                View Full PDF
+              </a>
+              <a
+                href={`${import.meta.env.BASE_URL}images/M.saif-cv.pdf`}
+                download="M.saif-cv.pdf"
+                className="px-5 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-full shadow-md transition"
               >
                 Download
               </a>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
+                className="px-5 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded-full shadow-md transition"
               >
                 Close
               </button>

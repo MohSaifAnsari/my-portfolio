@@ -3,13 +3,16 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const achievements = [
-  { title: "Best Talent Award by Regional Educational welfare Society", image: "/images/best talent.jpg" },
-  { title: "Web Development Summer Internship", image: "/images/web development.jpg" },
-  { title: "SPEL(Student police Experential Learning) Training Program", image: "/images/spel.jpg" },
-  { title: "Mr. Smart Tag from college", image: "/images/mr samrt.jpg" },
-  { title: "Web Development Club Captain ", image: "/images/captain.jpg" },
-  { title: "Java Programming Internship Program ", image: "/images/java.jpg" },
+  
+  { title: "Best Talent Award by Regional Educational welfare Society", image: `${import.meta.env.BASE_URL}images/best talent.jpg` },
+  { title: "Web Development Summer Internship", image: `${import.meta.env.BASE_URL}images/web development.jpg` },
+  { title: "SPEL(Student police Experential Learning) Training Program", image: `${import.meta.env.BASE_URL}images/spel.jpg` },
+  { title: "Mr. Smart Tag from college", image: `${import.meta.env.BASE_URL}images/mr samrt.jpg` },
+  { title: "Web Development Club Captain ", image: `${import.meta.env.BASE_URL}images/captain.jpg` },
+  { title: "Java Programming Internship Program ", image: `${import.meta.env.BASE_URL}images/java.jpg` },
 ];
+
+
 
 export default function Achievements() {
   return (

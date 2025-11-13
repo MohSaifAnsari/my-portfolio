@@ -17,7 +17,7 @@ export default function About() {
       icon: <FaRocket className="text-pink-500" aria-hidden="true" />,
       title: "Passionate Engineer",
       details:
-        "With over 6 years of professional experience, I bring passion and dedication to every project. I focus on building scalable and maintainable software that makes a real difference.",
+        "As a fresher, I am passionate about learning and dedicated to building scalable and maintainable software that makes a real difference.",
       summary: "Dedicated and enthusiastic about impactful software.",
     },
     {
