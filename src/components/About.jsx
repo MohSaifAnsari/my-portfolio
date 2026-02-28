@@ -1,202 +1,167 @@
-import React, { useEffect, useRef, useState } from "react";
-import { motion, useAnimation, AnimatePresence } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 import {
-  FaRocket,
-  FaLaptopCode,
-  FaPalette,
-  FaTools,
-  FaUsers,
-  FaChartLine,
-  FaGlobe,
-  FaStar,
+  FaUser, FaCode, FaPalette, FaRocket, FaUsers,
+  FaGraduationCap, FaMapMarkerAlt, FaEnvelope, FaBriefcase
 } from "react-icons/fa";
 
+const highlights = [
+  { icon: FaCode, color: "text-indigo-400", bg: "bg-indigo-500/10 border-indigo-500/20", label: "Full Stack Developer" },
+  { icon: FaPalette, color: "text-purple-400", bg: "bg-purple-500/10 border-purple-500/20", label: "UI/UX Enthusiast" },
+  { icon: FaRocket, color: "text-pink-400", bg: "bg-pink-500/10 border-pink-500/20", label: "Fast Learner" },
+  { icon: FaUsers, color: "text-cyan-400", bg: "bg-cyan-500/10 border-cyan-500/20", label: "Team Player" },
+  { icon: FaBriefcase, color: "text-amber-400", bg: "bg-amber-500/10 border-amber-500/20", label: "Problem Solver" },
+  { icon: FaGraduationCap, color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20", label: "BCA Graduate" },
+];
+
+const skills = [
+  { name: "React / Frontend", level: 88, color: "from-indigo-500 to-purple-500" },
+  { name: "Node.js / Backend", level: 82, color: "from-purple-500 to-pink-500" },
+  { name: "MongoDB / Database", level: 78, color: "from-pink-500 to-rose-500" },
+  { name: "UI/UX Design", level: 75, color: "from-cyan-500 to-indigo-500" },
+];
+
+const personalInfo = [
+  { icon: FaUser, label: "Name", value: "Moh Saif Ansari" },
+  { icon: FaMapMarkerAlt, label: "Location", value: "Jaunpur, Uttar Pradesh, India" },
+  { icon: FaGraduationCap, label: "Degree", value: "BCA – Bachelor of Computer Application" },
+  { icon: FaEnvelope, label: "Email", value: "saifansari50231@gmail.com" },
+];
+
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+};
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
 export default function About() {
-  const itemsData = [
-    {
-      icon: <FaRocket className="text-pink-500" aria-hidden="true" />,
-      title: "Passionate Engineer",
-      details:
-        "As a fresher, I am passionate about learning and dedicated to building scalable and maintainable software that makes a real difference.",
-      summary: "Dedicated and enthusiastic about impactful software.",
-    },
-    {
-      icon: <FaLaptopCode className="text-blue-500" aria-hidden="true" />,
-      title: "Full Stack Skills",
-      details:
-        "I have hands-on expertise in React, Node.js, Express, and MongoDB. I design sleek user interfaces with TailwindCSS and create robust RESTful APIs to power seamless applications.",
-      summary: "Expertise across frontend and backend technologies.",
-    },
-    {
-      icon: <FaPalette className="text-yellow-400" aria-hidden="true" />,
-      title: "UI/UX Focus",
-      details:
-        "User experience matters. I craft intuitive, accessible, and visually engaging interfaces to ensure users enjoy every interaction and find what they need effortlessly.",
-      summary: "Prioritizing user-friendly and beautiful designs.",
-    },
-    {
-      icon: <FaTools className="text-green-500" aria-hidden="true" />,
-      title: "End-to-End Development",
-      details:
-        "From concept to deployment, I manage all phases of the software lifecycle. I ensure clean architecture, thorough testing, and reliable delivery for high-quality products.",
-      summary: "Handling all stages of software delivery.",
-    },
-    {
-      icon: <FaUsers className="text-purple-500" aria-hidden="true" />,
-      title: "Collaborative",
-      details:
-        "I excel at working within diverse teams, communicating clearly with designers, product managers, and developers, and adapting to changing requirements to meet project goals.",
-      summary: "Team player with excellent communication skills.",
-    },
-    {
-      icon: <FaChartLine className="text-orange-500" aria-hidden="true" />,
-      title: "Continuous Learner",
-      details:
-        "I keep pace with evolving technologies and industry trends, continuously upgrading my skills and applying new knowledge to create innovative and efficient solutions.",
-      summary: "Always growing and embracing new tech.",
-    },
-    {
-      icon: <FaGlobe className="text-teal-500" aria-hidden="true" />,
-      title: "Global Mindset",
-      details:
-        "Open to remote and international collaboration, I embrace diverse perspectives and cultures, contributing positively to global projects and teams.",
-      summary: "Open and adaptable to global teamwork.",
-    },
-    {
-      icon: <FaStar className="text-red-500" aria-hidden="true" />,
-      title: "Clean Code Advocate",
-      details:
-        "I write clear, maintainable, and well-documented code. My coding practices emphasize readability, scalability, and ease of handoff to future developers.",
-      summary: "Writing code that lasts and is easy to maintain.",
-    },
-  ];
-
-  const controls = useAnimation();
-  const ref = useRef(null);
-
-  useEffect(() => {
-    function onScroll() {
-      if (!ref.current) return;
-      const top = ref.current.getBoundingClientRect().top;
-      if (top < window.innerHeight * 0.9) {
-        controls.start("visible");
-      }
-    }
-    window.addEventListener("scroll", onScroll);
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [controls]);
-
-  const [expandedIndex, setExpandedIndex] = useState(null);
-
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-      },
-    },
-  };
-
   return (
-    <motion.section
-      ref={ref}
-      className="relative w-full min-h-[480px] py-16 flex flex-col items-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white border-t border-gray-700 px-6 md:px-12"
-      initial="hidden"
-      animate={controls}
-      variants={{
-        hidden: { opacity: 0, y: 40 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: "easeOut" } },
-      }}
-      aria-label="About Me Section"
-    >
-      <motion.h2
-        className="text-5xl font-extrabold mb-8 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent"
-        initial={{ opacity: 0, y: -20 }}
-        animate={controls}
-        variants={{
-          hidden: { opacity: 0, y: -20 },
-          visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-        }}
-      >
-        About Me
-      </motion.h2>
+    <section id="about" className="py-24 px-6 relative overflow-hidden">
+      {/* Background blobs */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-600/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-600/5 rounded-full blur-3xl pointer-events-none" />
 
-      <motion.p
-        className="text-lg max-w-3xl text-gray-300 leading-relaxed mb-12 text-center"
-        initial={{ opacity: 0 }}
-        animate={controls}
-        variants={{
-          hidden: { opacity: 0 },
-          visible: { opacity: 1, transition: { delay: 0.2, duration: 0.8 } },
-        }}
-      >
-        I’m a passionate Software Engineer dedicated to building modern, scalable, and user-friendly digital experiences that solve real problems.
-      </motion.p>
+      <div className="max-w-7xl mx-auto">
+        {/* Section header */}
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <span className="section-tag mb-4 inline-block">✦ About Me</span>
+          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
+            Who <span className="text-gradient">Am I?</span>
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+            A passionate developer who loves building meaningful digital experiences.
+          </p>
+        </motion.div>
 
-      {/* Cards List with stagger */}
-      <motion.ul
-        className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl w-full"
-        role="list"
-        variants={containerVariants}
-        initial="hidden"
-        animate={controls}
-      >
-        {itemsData.map((item, index) => (
-          <motion.li
-            key={index}
-            className="flex flex-col bg-gray-800 rounded-xl shadow-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-pink-500 transition-transform hover:scale-105 hover:bg-gray-700 p-6"
-            tabIndex={0}
-            onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                setExpandedIndex(expandedIndex === index ? null : index);
-              }
-            }}
-            variants={cardVariants}
-            aria-expanded={expandedIndex === index}
-            aria-controls={`about-details-${index}`}
-            role="button"
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+          {/* ── Left: Personal Info + Highlights ── */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
           >
-            <div className="flex items-center gap-5">
-              <div className="text-4xl flex-shrink-0" aria-hidden="true">
-                {item.icon}
+            <div className="glass-card rounded-3xl p-8 mb-8 border border-white/5">
+              <h3 className="text-xl font-display font-bold mb-6 text-gradient">Personal Info</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {personalInfo.map(({ icon: Icon, label, value }) => (
+                  <div key={label} className="flex items-start gap-3 p-3 rounded-xl hover:bg-white/3 transition">
+                    <div className="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Icon className="text-indigo-400 text-xs" />
+                    </div>
+                    <div>
+                      <p className="text-gray-500 text-xs font-medium">{label}</p>
+                      <p className="text-white text-sm font-medium">{value}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <h3 className="text-xl font-semibold">{item.title}</h3>
             </div>
 
-            <AnimatePresence>
-              {expandedIndex === index && (
+            <p className="text-gray-300 text-base leading-relaxed mb-6">
+              I'm a <span className="text-indigo-300 font-semibold">Full Stack Developer</span> with
+              hands-on experience building real-world applications using the MERN stack. I'm passionate about
+              creating clean, performant, and accessible web experiences that make a real-world impact.
+            </p>
+            <p className="text-gray-400 text-base leading-relaxed mb-8">
+              When I'm not coding, I'm exploring new technologies, contributing to open-source, or mentoring
+              peers. I believe great software starts with empathy for the user and clarity in the code.
+            </p>
+
+            <motion.a
+              href="#contact"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold text-sm shadow-glow-sm"
+            >
+              Let's Work Together →
+            </motion.a>
+          </motion.div>
+
+          {/* ── Right: Skill Bars + Highlights ── */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            {/* Skill Bars */}
+            <div className="glass-card rounded-3xl p-8 mb-8 border border-white/5">
+              <h3 className="text-xl font-display font-bold mb-6 text-gradient">Core Skills</h3>
+              <div className="flex flex-col gap-5">
+                {skills.map(({ name, level, color }, i) => (
+                  <div key={name}>
+                    <div className="flex justify-between mb-2">
+                      <span className="text-sm font-medium text-gray-300">{name}</span>
+                      <span className="text-sm font-bold text-indigo-400">{level}%</span>
+                    </div>
+                    <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                      <motion.div
+                        className={`h-full rounded-full bg-gradient-to-r ${color}`}
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${level}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.2, delay: i * 0.1, ease: "easeOut" }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Highlights Grid */}
+            <motion.div
+              className="grid grid-cols-2 sm:grid-cols-3 gap-3"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              {highlights.map(({ icon: Icon, color, bg, label }) => (
                 <motion.div
-                  id={`about-details-${index}`}
-                  className="mt-4 text-gray-300 text-base leading-relaxed select-text flex flex-col gap-3"
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.35 }}
+                  key={label}
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.04, y: -2 }}
+                  className={`flex flex-col items-center gap-2 p-4 rounded-2xl border ${bg} transition-all text-center cursor-default`}
                 >
-                  <p>{item.details}</p>
-                  <p className="italic text-sm text-pink-400 font-semibold">{item.summary}</p>
+                  <Icon className={`text-xl ${color}`} />
+                  <span className="text-xs font-medium text-gray-300">{label}</span>
                 </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.li>
-        ))}
-      </motion.ul>
-    </motion.section>
+              ))}
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
   );
 }
